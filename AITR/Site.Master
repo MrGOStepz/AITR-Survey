@@ -1,0 +1,86 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="AITR.SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <title></title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styles/bootstrap.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+        <form id="Form1" runat="server">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
+      <a class="navbar-brand" href="#">AITR</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <asp:Label ID="lbIPAddress" runat="server" Text="IPAddress:" style="color:White;"></asp:Label>
+          </li>
+          <li class="nav-item">
+            <asp:Label ID="lbDate" runat="server" Text="Date:" style= "color:White;"></asp:Label>
+          </li>
+        </ul>
+
+        <form class="form-inline my-2 my-lg-0" >
+            <asp:TextBox ID="txtUserName" runat="server" placeholder="User Name" CssClass="mr-sm-2"></asp:TextBox>
+            <asp:TextBox ID="txtPassword" runat="server" placeholder="Password" CssClass="mr-sm-2"></asp:TextBox>
+            <asp:Button ID="btnLogin" runat="server" Text="Login" 
+                CssClass="btn btn-success my-2 my-sm-0" type="submit" 
+                onclick="btnLogin_Click"></asp:Button>
+        </form>
+        &nbsp
+        <asp:Button ID="btnRegister" runat="server" Text="Register" 
+                CssClass="btn btn-danger my-2 my-sm-0" onclick="btnRegister_Click"></asp:Button>
+      </div>
+    </nav>
+
+
+
+
+    <div class="page">
+        <div class="header">
+            <div class="title">
+                <h1>
+                    My ASP.NET Application
+                </h1>
+            </div>
+            <div class="loginDisplay">
+                <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                    <AnonymousTemplate>
+                        [ <a href="~/Account/Login.aspx" ID="HeadLoginStatus" runat="server">Log In</a> ]
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        Welcome <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
+                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" LogoutPageUrl="~/"/> ]
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </div>
+            <div class="clear hideSkiplink">
+                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
+                        <asp:MenuItem NavigateUrl="~/About.aspx" Text="About"/>
+                    </Items>
+                </asp:Menu>
+            </div>
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    </form>
+
+    
+</body>
+</html>
